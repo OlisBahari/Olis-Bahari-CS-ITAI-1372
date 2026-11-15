@@ -1,15 +1,5 @@
-# Filemame......: dlp_pipeline.py
-# Language......: Python
-# Tools.......... Visual Source Code
-# Class.........: ITAI 1372 Artificial Intelligence in Cybersecurity
-# Semster.......: Fall 2026
-# Class Type....: Online
-# Instructor....: Hien Nguyen
-# Student.......: Olis Bahari
-# Version.......: V1.0
-
 # Install necessary Google Cloud SDK libraries for Colab environment
-!pip install --quiet google-cloud-dlp google-cloud-storage
+%pip install --quiet google-cloud-dlp google-cloud-storage
 
 #!/usr/bin/env python3
 """
