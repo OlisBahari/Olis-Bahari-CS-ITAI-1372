@@ -1,0 +1,76 @@
+//
+// Process Securing_Infrastructure_for_AI_Applications
+//
+
+gcloud config set project dynamic-circlet-j41fc
+
+Step 1 — Install Python
+Open PowerShell and check whether Python is installed:
+python --version
+You should see something similar to:
+Python 3.10.8
+If Python is not installed, download it from python.org.
+
+Step 2 — Install Google Cloud CLI
+Download the Google Cloud CLI for Windows:
+Google Cloud CLI installation instructions
+Run the Windows installer. Select the option to add gcloud to your PATH if offered.
+After installation, close and reopen PowerShell.
+Verify
+gcloud --version
+Then initialize Google Cloud CLI:
+gcloud init
+A browser window will open for Google account authentication. Choose the Google Cloud project you want to use.
+
+Step 3 — Set up your Google Cloud project
+First, identify your project ID:
+gcloud projects list
+Configure your project:
+gcloud config set project YOUR_PROJECT_ID
+Replace YOUR_PROJECT_ID with your actual Google Cloud project ID.
+Confirm:
+gcloud config get-value project
+Make sure the project has billing enabled and that your account has sufficient permissions to create the requested resources.
+
+Step 4 — Enable required Google Cloud APIs
+Open PowerShell and execute:
+gcloud services enable compute.googleapis.com
+gcloud services enable notebooks.googleapis.com
+gcloud services enable storage.googleapis.com
+gcloud services enable iam.googleapis.com
+gcloud services enable logging.googleapis.com
+Depending on the script, additional APIs may be required.
+
+Step 5 — Open your Python project folder
+Suppose your file is located at
+C:\AI_Projects\Securing_Infrastructure_for_AI_Applications.py
+Open PowerShell and navigate to the folder:
+cd C:\AI_Projects
+dir Securing_Infrastructure_for_AI_Applications.py
+Verify the file exists:
+dir Securing_Infrastructure_for_AI_Applications.py
+
+Step 6 — Run a dry-run first
+This is the safest first test.
+python .\Securing_Infrastructure_for_AI_Applications.ipynb deploy --project dynamic-circlet-j41fc --dry-run
+
+Step 7 — Deploy your secure AI infrastructure
+When the dry-run output looks correct, run:
+python .\Securing_Infrastructure_for_AI_Applications.py deploy --dynamic-circlet-j41fc
+
+To include Cloud NAT:
+python .\Securing_Infrastructure_for_AI_Applications.py deploy --project dynamic-circlet-j41fc --nat --allow-iap-ssh
+Cloud resources, including Workbench and NAT, may incur charges while deployed.
+
+Step 8 — Audit the infrastructure
+After deployment, run:
+python .\Securing_Infrastructure_for_AI_Applications.py audit --project dynamic-circlet-j41fc
+For JSON output:
+python .\Securing_Infrastructure_for_AI_Applications.py audit --project dynamic-circlet-j41fc --json
+The audit should check the security configuration and report any deviations.
+
+Step 9 — Tear down the infrastructure
+When you finish the lab, preview resource remov
+python .\Securing_Infrastructure_for_AI_Applications.py teardown --project dynamic-circlet-j41fc --dry-run
+Then remove the resources:
+python .\Securing_Infrastructure_for_AI_Applications.py teardown --project dynamic-circlet-j41fc --yes
