@@ -1,0 +1,51 @@
+C:\Dropbox\Artifical Intellegence\Houston City College (HCC)\04 Artificial Intelligence in Cybersecurity\Olis-Bahari-CS-ITAI-1372\Lab\44 Securing Infrastructure for AI Applications\Source Code>python securing_infrastructure_for_ai_applications.py audit
+Security audit for project dynamic-circlet-j41fc
+
+Network
+  ✔ PASS  VPC genai-secure-vpc exists
+  ✔ PASS  VPC uses custom subnet mode
+  ✔ PASS  Subnet genai-subnet-us-central1 exists
+  ✔ PASS  Private Google Access enabled
+  ✔ PASS  VPC flow logs enabled
+  ! WARN  No 'default' network (it ships with open SSH/RDP rules)  (consider deleting it if nothing uses it)
+
+Firewall
+  ✔ PASS  Deny-all ingress rule exists
+  ✔ PASS  Deny-all rule still denies all ingress from 0.0.0.0/0
+  ✔ PASS  Deny-all rule logs blocked traffic
+  ✔ PASS  No ingress allowed from anywhere (0.0.0.0/0, ::/0)
+
+Identity
+  ✔ PASS  Service account vertex-workbench-sa exists
+  ✔ PASS  Service account has no broad admin roles
+  ✔ PASS  Service account holds only expected project roles
+  ✔ PASS  No user-managed keys for the service account
+
+Workbench
+  ✔ PASS  Instance secure-workbench exists
+  ✔ PASS  No public IP
+  ✔ PASS  Attached to the secure VPC
+  ✔ PASS  Runs as the least-privilege service account  (vertex-workbench-sa@dynamic-circlet-j41fc.iam.gserviceaccount.com)
+  ✔ PASS  Shielded VM: secure boot
+  ✔ PASS  Shielded VM: vTPM
+  ✔ PASS  Shielded VM: integrity monitoring
+  ✔ PASS  Metadata notebook-disable-root=true
+  ✔ PASS  Metadata notebook-disable-downloads=true
+  ✔ PASS  Metadata notebook-disable-nbconvert=true
+  ✘ FAIL  Single instance owner
+
+Storage
+  ✔ PASS  Bucket gs://genai-data-30b6746a4bda exists
+  ✔ PASS  Public access prevention enforced
+  ✔ PASS  Uniform bucket-level access
+  ✔ PASS  Object versioning on
+  ✔ PASS  Soft delete on  (7 day(s))
+  ✔ PASS  No public IAM bindings
+
+Logging
+  ✔ PASS  Storage DATA_READ audit logs
+  ✔ PASS  Storage DATA_WRITE audit logs
+
+31 passed, 1 failed, 1 warnings
+
+C:\Dropbox\Artifical Intellegence\Houston City College (HCC)\04 Artificial Intelligence in Cybersecurity\Olis-Bahari-CS-ITAI-1372\Lab\44 Securing Infrastructure for AI Applications\Source Code>cd "C:\Dropbox\Artifical Intellegence\Houston City College (HCC)\04 Artificial Intelligence in Cybersecurity\Olis-Bahari-CS-ITAI-1372\Lab\44 Securing Infrastructure for AI Applications\Source Code"
