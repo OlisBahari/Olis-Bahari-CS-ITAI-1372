@@ -1,0 +1,28 @@
+
+C:\Dropbox\Artifical Intellegence\Houston City College (HCC)\04 Artificial Intelligence in Cybersecurity\Olis-Bahari-CS-ITAI-1372\Lab\44 Securing Infrastructure for AI Applications\Source Code>python securing_infrastructure_for_ai_applications.py teardown
+This deletes the Workbench instance, the bucket gs://genai-data-30b6746a4bda and ALL its data, the service account and the network in project dynamic-circlet-j41fc.
+Type the project ID to confirm: dynamic-circlet-j41fc
+
+== Workbench instance
+  $ gcloud workbench instances delete secure-workbench --location=us-central1-a --project=dynamic-circlet-j41fc --quiet
+
+== Bucket
+  $ gcloud storage rm --recursive --all-versions gs://genai-data-30b6746a4bda --project=dynamic-circlet-j41fc --quiet
+  note: soft-deleted objects are kept for up to 7 days, then purged
+
+== Service account
+  $ gcloud projects remove-iam-policy-binding dynamic-circlet-j41fc --member=serviceAccount:vertex-workbench-sa@dynamic-circlet-j41fc.iam.gserviceaccount.com --role=roles/aiplatform.user --condition=None --project=dynamic-circlet-j41fc --quiet
+  $ gcloud projects remove-iam-policy-binding dynamic-circlet-j41fc --member=serviceAccount:vertex-workbench-sa@dynamic-circlet-j41fc.iam.gserviceaccount.com --role=roles/logging.logWriter --condition=None --project=dynamic-circlet-j41fc --quiet
+  $ gcloud projects remove-iam-policy-binding dynamic-circlet-j41fc --member=serviceAccount:vertex-workbench-sa@dynamic-circlet-j41fc.iam.gserviceaccount.com --role=roles/monitoring.metricWriter --condition=None --project=dynamic-circlet-j41fc --quiet
+  $ gcloud iam service-accounts delete vertex-workbench-sa@dynamic-circlet-j41fc.iam.gserviceaccount.com --project=dynamic-circlet-j41fc --quiet
+
+== Network
+  - not found, nothing to delete
+  - not found, nothing to delete
+  $ gcloud compute firewall-rules delete genai-deny-all-ingress --project=dynamic-circlet-j41fc --quiet
+  $ gcloud compute networks subnets delete genai-subnet-us-central1 --region=us-central1 --project=dynamic-circlet-j41fc --quiet
+  $ gcloud compute networks delete genai-secure-vpc --project=dynamic-circlet-j41fc --quiet
+
+Teardown finished. Storage Data Access audit logging was left on; turn it off under IAM & Admin > Audit Logs if you no longer want it.
+
+C:\Dropbox\Artifical Intellegence\Houston City College (HCC)\04 Artificial Intelligence in Cybersecurity\Olis-Bahari-CS-ITAI-1372\Lab\44 Securing Infrastructure for AI Applications\Source Code>
